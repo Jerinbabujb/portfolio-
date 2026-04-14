@@ -1,0 +1,64 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  height: 52px;
+  background: rgba(8,8,8,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, background 0.3s;
+}
+.navbar.scrolled {
+  background: rgba(8,8,8,0.95);
+  border-color: var(--border);
+}
+.navbar-logo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-right: auto;
+}
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.navbar-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text2);
+  text-transform: uppercase;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 2px;
+}
+.navbar-link:hover { color: var(--text); }
+.navbar-link.active { color: var(--text); }
+.navbar-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--cyan);
+}
+.nav-hire {
+  margin-left: 32px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  border: 1px solid rgba(0,212,255,0.4);
+  padding: 7px 16px;
+  transition: all 0.2s;
+}
+.nav-hire:hover {
+  background: var(--cyan);
+  color: var(--bg);
+  border-color: var(--cyan);
+}
