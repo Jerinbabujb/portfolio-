@@ -65,7 +65,7 @@ export default function Home() {
       <section className="hero" ref={heroRef}>
         <motion.div className="hero-content" style={{ y: heroY, opacity: heroOpacity }}>
          <TypeAnimation
-            sequence={['Jerin', 1000, 'Web Developer', 1000, 'Mobile Developer', 1000]}
+            sequence={['Jerin Babu', 1000, 'Web Developer', 1000, 'Mobile Developer', 1000]}
             wrapper="span"
             speed={50}
             className="type-animation-text"
