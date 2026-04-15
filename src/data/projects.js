@@ -4,7 +4,7 @@ export const projects = [
     name: 'Chatter Box – Real-Time Chat Application',
     year: '2025', category: 'CORE',
     description: 'A high-fidelity dashboard for monitoring LLM inference performance across distributed clusters.',
-    tags: ['NEXT.JS 14', 'WEBKIT', 'RUST'],
+    tags: ['REACT (VITE)', 'MONGODB', 'TAILWIND', 'NODEJS', 'EXPRESSJS', 'WEBSOCKET','JWT','CLOUDINARY'],
     status: 'ACTIVE PROJECT',
     vision: 'Bridge the gap between raw inference metrics and actionable operational insight — making invisible bottlenecks visible in real time.',
     fullDescription: `Built a full-stack real-time chat application with secure authentication and live messaging using Socket.io. Integrated JWT-based auth, media uploads via Cloudinary, and a responsive UI with Tailwind CSS.`,
@@ -15,7 +15,7 @@ export const projects = [
       { title: 'Cluster Topology', desc: 'Interactive 3D cluster map rendered via Three.js, with live edge-bandwidth overlays.' },
     ],
     stack: ['REACT (VITE)', 'MONGODB', 'TAILWIND', 'NODEJS', 'EXPRESSJS', 'WEBSOCKET','JWT','CLOUDINARY'],
-    stats: [{ label: 'COMMITS', value: '8.2k' }, { label: 'LATENCY', value: '<50ms' }, { label: 'NODES', value: '500+' }, { label: 'UPTIME', value: '99.9%' }],
+    stats: [{ label: 'COMMITS', value: '8' }, { label: 'COMPONENTS', value: '3' }],
     code: `// cluster_monitor.rs
 pub async fn stream_cluster_metrics(
   cluster_id: &str,

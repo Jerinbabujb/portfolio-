@@ -498,3 +498,174 @@
 .form-field::placeholder { color: var(--text3); }
 .form-field:focus { border-color: rgba(0,212,255,0.4); }
 .form-textarea { height: 100px; }
+
+/* =========================
+   TABLET (≤1024px)
+========================= */
+
+@media (max-width: 1024px) {
+
+  .hero {
+    padding: 0 32px;
+  }
+
+  .hero-code-visual {
+    display: none;
+  }
+
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .photo-frame {
+    margin: auto;
+  }
+
+  .about-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .timeline-date {
+    font-size: 11px;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cta-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .cta-title {
+    font-size: 52px;
+  }
+
+}
+
+
+/* =========================
+   MOBILE (≤768px)
+========================= */
+
+@media (max-width: 768px) {
+
+  .home {
+    padding-top: 40px;
+  }
+
+  .hero {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+  }
+
+  .about-inner {
+    padding: 0 20px;
+  }
+
+  .photo-frame {
+    width: 260px;
+  }
+
+  .career-inner {
+    padding: 0 20px;
+  }
+
+  .career-title {
+    font-size: 36px;
+  }
+
+  .career-year {
+    display: none;
+  }
+
+  .timeline-desc {
+    font-size: 12px;
+  }
+
+  .tooling-inner {
+    padding: 0 20px;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tooling-title {
+    font-size: 32px;
+  }
+
+  .cta-inner {
+    padding: 0 20px;
+  }
+
+  .cta-title {
+    font-size: 42px;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE (≤480px)
+========================= */
+
+@media (max-width: 480px) {
+
+  .type-animation-text {
+    font-size: 1.6rem;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+  }
+
+  .photo-frame {
+    width: 220px;
+  }
+
+  .exp-badge {
+    right: -10px;
+    bottom: -10px;
+    padding: 12px;
+  }
+
+  .exp-num {
+    font-size: 24px;
+  }
+
+  .career-title {
+    font-size: 28px;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-title {
+    font-size: 34px;
+  }
+
+}

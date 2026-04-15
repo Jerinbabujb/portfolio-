@@ -6,12 +6,15 @@ import './Home.css';
 import { TypeAnimation } from 'react-type-animation';
 
 const tools = [
-  { label: 'TYPESCRIPT', sym: '</>' },
+{ label: 'TYPESCRIPT', sym: '</>' },
   { label: 'POSTGRESQL', sym: '▣' },
-  { label: 'AWS', sym: '☁' },
+  { label: 'HTML/CSS', sym: '☁' },
   { label: 'DOCKER', sym: '⬡' },
-  { label: 'FRAMER', sym: '✦' },
-  { label: 'GRAPHQL', sym: '⬢' },
+  { label: 'MERN', sym: '✦' }, // This was a "break" in your cycle
+  { label: 'JAVASCRIPT', sym: '⬢' },
+  { label: 'MONGODB', sym: '</>' },
+  { label: 'GITHUB', sym: '▣' },
+  { label: 'WORDPRESS', sym: '☁' }, // Keeping the cycle: Code -> Box -> Cloud
 ];
 
 function FadeUp({ children, delay = 0 }) {
@@ -180,25 +183,46 @@ export default function Home() {
             <div className="section-label">JOURNEY</div>
             <div className="career-head">
               <h2 className="career-title">Career Architecture</h2>
-              <div className="career-year">2019—2024</div>
+              <div className="career-year">2023—2026</div>
             </div>
           </FadeUp>
 
           <div className="timeline">
             {[
               {
-                date: 'JAN 2021 — PRESENT',
-                title: 'Senior Software Engineer',
-                company: 'BUILD LABS',
-                desc: 'Leading the development of a distributed microservices platform processing $2M+ in daily transactions. Reduced system latency by 45% through custom caching strategies.',
-                tags: ['RUST', 'KUBERNETES', 'AWS'],
+                date: 'AUG 2025 — PRESENT',
+                title: 'Jr Web Developer',
+                company: 'Fospe Technologies W.L.L',
+                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
+                tags: ['WORDPRESS', 'DEPLOYMENT', 'PHP'],
               },
               {
-                date: 'MAR 2019 — DEC 2020',
-                title: 'Full Stack Developer',
-                company: 'ORBITAL SYSTEMS',
-                desc: 'Architected a real-time data visualization dashboard for satellite monitoring. Implemented reactive UI patterns and managed complex state synchronization.',
-                tags: ['REACT', 'TYPESCRIPT', 'REDIS'],
+                date: 'APRIL 2019 — PRESENT',
+                title: 'Freelancer',
+                company: 'Freelancer',
+                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
+                tags: ['REACT', 'TYPESCRIPT', 'MONGODB','MERN','TAILWINDCSS'],
+              },
+              {
+                date: 'OCT 2024 — MAR 2025',
+                title: 'Software Development Engineer I',
+                company: 'Innoai',
+                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
+                tags: ['WORDPRESS', 'DEPLOYMENT', 'AUTOMATION','HULOOP'],
+              },
+              {
+                date: 'NOV 2023 — SEPT 2024',
+                title: 'Software Development Engineer I',
+                company: 'Everleaves Systems',
+                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
+                tags: ['WORDPRESS', 'DJANGO', 'DEPLOYMENT'],
+              },
+              {
+                date: 'AUG 2023 — OCT 2023',
+                title: 'Web Development Intern',
+                company: 'Everleaves Systems',
+                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
+                tags: ['REACT', 'MONGODB','NODEJS', 'EXPRESSJS','WORDPRESS'],
               },
             ].map((item, i) => (
               <SlideIn key={i} from="left" delay={i * 0.1}>
@@ -245,7 +269,6 @@ export default function Home() {
             <div className="code-block">
               <div className="cb-header">
                 <span className="cb-dot red" /><span className="cb-dot amber" /><span className="cb-dot grn" />
-                <span className="cb-filename">KINETIC_ARCHITECT.RS</span>
               </div>
               <pre className="cb-body"><code>{`const Architect = {
   focus: `}<span className="c-str">"High Performance Systems"</span>{`,
@@ -270,8 +293,8 @@ export default function Home() {
                 that requires a fusion of architectural precision and innovative UI, reach out.
               </p>
               <div className="cta-contact-info">
-                <div className="contact-row">✉ hello@kineticarchitect.io</div>
-                <div className="contact-row">⊙ Berlin, DE // Remote</div>
+               <a href='mailto: jerin.babujb@gmail.com' target='_blank'> <div className="contact-row">✉ jerin.babujb@gmail.com</div></a>
+                <div className="contact-row">⊙ Manama, Bahrain // Remote</div>
               </div>
             </FadeUp>
           </div>
