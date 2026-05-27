@@ -1,9 +1,9 @@
 export const projects = [
   {
-    id: 'neural_dock',
-    name: 'Chatter Box – Real-Time Chat Application',
-    year: '2025', category: 'CORE',
-    description: 'A high-fidelity dashboard for monitoring LLM inference performance across distributed clusters.',
+    id: 'unisoul',
+    name: 'UNISOUL – NEURODIVERGENT DATING & SOCIAL APP',
+    year: '2026', category: 'WEB PROJECT',
+    description: 'A borderless matchmaking and social networking platform featuring vector-based pairing, biometric authentication, and synchronized real-time media sharing.',
     tags: ['NEXT.JS 14', 'WEBKIT', 'RUST'],
     status: 'ACTIVE PROJECT',
     vision: 'Bridge the gap in modern dating by creating a safe, highly verifiable, and deeply interactive environment tailored for neurodivergent connections—where users connect over synchronized experiences rather than just swipes.',
@@ -14,23 +14,22 @@ export const projects = [
       { title: 'Real-Time Biometrics', desc: 'Integrates Face API for immediate, real-time selfie authentication during onboarding to ensure platform integrity.' },
       { title: 'Granular Privacy Controls', desc: 'Features social media visibility toggles, user blocking, and strict custom JWT protected routes.' },
     ],
-    stack: ['REACT (VITE)', 'MONGODB', 'TAILWIND', 'NODEJS', 'EXPRESSJS', 'WEBSOCKET','JWT','CLOUDINARY'],
+    stack: ['React', 'Supabase','Prisma','WebSockets','Transformers', 'TAILWIND', 'NODEJS', 'EXPRESSJS', 'WEBSOCKET','JWT','CLOUDINARY'],
     stats: [{ label: 'COMMITS', value: '8.2k' }, { label: 'LATENCY', value: '<50ms' }, { label: 'NODES', value: '500+' }, { label: 'UPTIME', value: '99.9%' }],
-    code: `// cluster_monitor.rs
-pub async fn stream_cluster_metrics(
-  cluster_id: &str,
-  tx: mpsc::Sender<NodeMetrics>,
-) -> Result<(), DockError> {
-  let nodes = ClusterState::hydrate(cluster_id).await?;
-  for node in nodes.iter_active() {
-    let metrics = node.poll_inference_stats().await?;
-    tx.send(metrics).await?;
-  }
-  Ok(())
-}`,
+    code: `// Core matching logic using Prisma and pgvector for cosine similarity
+const findTopMatches = async (userEmbedding: number[]) => {
+  const matches = await prisma.$queryRaw
+    SELECT id, name, bio, 1 - (embedding <=> \${userEmbedding}::vector) AS match_score
+    FROM users
+    WHERE id != \${currentUserId} AND is_blocked = false
+    ORDER BY match_score DESC 
+    LIMIT 10;
+  ;
+  return matches;
+};`,
     related: ['kinetic_ui', 'pulse_metric', 'quantum_flow'],
-    live:'https://chatterbox-chat.onrender.com/',
-    github:'https://github.com/Jerinbabujb/chatterbox-forntend'
+    live:'https://unisoul-web.netlify.app/',
+    // github:'https://github.com/Jerinbabujb/chatterbox-forntend'
   },
   {
     id: 'focus_flow',
