@@ -64,7 +64,7 @@ export default function Projects() {
                 <h3 className="proj-card-name">{p.name}</h3>
                 <p className="proj-card-desc">{p.description}</p>
                 <div className="proj-card-tags">
-                  {p.tags.slice(0, 2).map(t => <span key={t} className="tag">{t}</span>)}
+                  {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
                 <div className="proj-card-arrow">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

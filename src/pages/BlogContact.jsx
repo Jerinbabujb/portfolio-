@@ -92,7 +92,6 @@ export function Contact() {
             LET'S <span className="contact-green">SYNC.</span>
           </motion.h1>
           <motion.p className="contact-hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-            I am currently accepting select opportunities for Q4 2024.
           </motion.p>
         </motion.div>
         <div className="contact-grid-bg" />
@@ -104,46 +103,42 @@ export function Contact() {
             <div className="contact-info">
               <div className="ci-item">
                 <div className="ci-label">EMAIL</div>
-                <div className="ci-value">hello@kineticarchitect.io</div>
+               <a href='mailto:jerin.babujb@gmail.com' target='_blank'> <div className="ci-value">jerin.babujb@gmail.com</div></a>
               </div>
               <div className="ci-item">
                 <div className="ci-label">LOCATION</div>
-                <div className="ci-value">Berlin, DE // Remote</div>
+                <div className="ci-value">Manama, Bahrain // Remote</div>
               </div>
-              <div className="ci-item">
-                <div className="ci-label">AVAILABILITY</div>
-                <div className="ci-value">Q4 2024 — Select Projects</div>
-              </div>
-              <div className="ci-socials">
-                {['GITHUB', 'LINKEDIN', 'TWITTER', 'DRIBBBLE'].map(s => (
-                  <a key={s} href="#" className="ci-social">{s}</a>
-                ))}
-              </div>
+             <div className="ci-socials">
+  <a
+    href="https://github.com/Jerinbabujb"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ci-social"
+  >
+    GITHUB
+  </a>
+
+  <a
+    href="https://www.linkedin.com/in/jerin-babu/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ci-social"
+  >
+    LINKEDIN
+  </a>
+</div>
             </div>
           </FadeUp>
 
           <FadeUp delay={0.1}>
             <div className="contact-form-wrap">
-              <div className="cf-title">PROJECT BRIEF</div>
+              <div className="cf-title">CONTACT</div>
               <div className="cf-grid">
                 <input className="cf-input" placeholder="FULL NAME" />
                 <input className="cf-input" placeholder="EMAIL ADDRESS" />
                 <input className="cf-input cf-full" placeholder="COMPANY / PROJECT" />
                 <textarea className="cf-input cf-textarea cf-full" placeholder="DESCRIBE YOUR PROJECT. WHAT ARE YOU BUILDING? WHAT PROBLEMS NEED SOLVING?" />
-                <select className="cf-input cf-select">
-                  <option value="">TIMELINE</option>
-                  <option>ASAP</option>
-                  <option>1-3 MONTHS</option>
-                  <option>3-6 MONTHS</option>
-                  <option>ONGOING</option>
-                </select>
-                <select className="cf-input cf-select">
-                  <option value="">BUDGET RANGE</option>
-                  <option>$10K - $25K</option>
-                  <option>$25K - $75K</option>
-                  <option>$75K - $150K</option>
-                  <option>$150K+</option>
-                </select>
               </div>
               <motion.button className="btn-primary btn-full-w" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                 ESTABLISH CONNECTION

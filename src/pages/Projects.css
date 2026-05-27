@@ -167,3 +167,121 @@
   display: inline-block;
 }
 .btn-primary:hover { background: #00aacc; }
+
+/* =========================
+   TABLET (≤1024px)
+========================= */
+
+@media (max-width: 1024px) {
+
+  .proj-hero {
+    padding: 80px 32px 100px;
+  }
+
+  .proj-grid-section {
+    padding: 48px 32px;
+  }
+
+  .proj-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .proj-card {
+    min-height: 200px;
+  }
+
+  .proj-cta {
+    padding: 64px 32px;
+  }
+
+  .proj-cta-title {
+    font-size: 48px;
+  }
+
+}
+
+
+/* =========================
+   MOBILE (≤768px)
+========================= */
+
+@media (max-width: 768px) {
+
+  .projects-page {
+    padding-top: 40px;
+  }
+
+  .proj-hero {
+    padding: 60px 20px 80px;
+    text-align: center;
+  }
+
+  .proj-hero-sub {
+    margin: auto;
+  }
+
+  .proj-grid-section {
+    padding: 40px 20px;
+  }
+
+  .proj-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proj-card {
+    padding: 22px 18px;
+    min-height: auto;
+  }
+
+  .proj-card-arrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  .proj-cta {
+    padding: 56px 20px;
+    text-align: center;
+  }
+
+  .proj-cta-inner {
+    text-align: center;
+  }
+
+  .proj-cta-title {
+    font-size: 36px;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE (≤480px)
+========================= */
+
+@media (max-width: 480px) {
+
+  .proj-hero-title {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .proj-hero-sub {
+    font-size: 13px;
+  }
+
+  .proj-card-name {
+    font-size: 13px;
+  }
+
+  .proj-card-desc {
+    font-size: 11px;
+  }
+
+  .proj-card-tags {
+    gap: 4px;
+  }
+
+  .proj-cta-title {
+    font-size: 30px;
+  }
+
+}

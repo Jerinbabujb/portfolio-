@@ -9,11 +9,26 @@ export default function Footer() {
           <div className="footer-logo">JERIN BABU</div>
           <div className="footer-copy">© 2026 JERIN BABU. BUILT WITH INTENT.</div>
         </div>
+        
         <div className="footer-links">
-          {['GITHUB', 'LINKEDIN'].map(l => (
-            <a key={l} href="#" className="footer-link">{l}</a>
-          ))}
-        </div>
+  <a
+    href="https://github.com/Jerinbabujb"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ci-social"
+  >
+    GITHUB
+  </a>
+
+  <a
+    href="https://www.linkedin.com/in/jerin-babu/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ci-social"
+  >
+    LINKEDIN
+  </a>
+</div>
       </div>
     </footer>
   );
