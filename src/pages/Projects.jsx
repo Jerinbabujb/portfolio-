@@ -49,6 +49,7 @@ export default function Projects() {
           </motion.p>
         </motion.div>
         <div className="proj-hero-grid" />
+        <div className="proj-hero-glow" />
       </section>
 
       {/* Grid */}
@@ -57,45 +58,50 @@ export default function Projects() {
           {projects.map((p, i) => (
             <FadeUp key={p.id} delay={0.05 * (i % 6)}>
               <Link to={`/work/${p.id}`} className="proj-card">
-                <div className="proj-card-meta">
-                  <span className="proj-year">{p.year} / {p.category}</span>
-                </div>
-                <div className="proj-card-icon">{getIcon(p.category)}</div>
-                <h3 className="proj-card-name">{p.name}</h3>
-                <p className="proj-card-desc">{p.description}</p>
-                <div className="proj-card-tags">
-                  {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
-                </div>
-                <div className="proj-card-arrow">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                {i === 2 && (
-                  <div className="proj-card-preview">
-                    <div className="preview-lines">
-                      {Array.from({length:6}).map((_,j) => <div key={j} className="preview-line" style={{width:`${40+(j*11)%45}%`}} />)}
+                
+                
+                {/* New Visual Top Section */}
+<div className="proj-card-visual">
+  {/* The Image (if it exists) */}
+  {p.image ? (
+    <img src={p.image} alt={p.name} className="proj-card-img" />
+  ) : (
+    <div className="visual-tech-pattern"></div>
+  )}
+  
+  {/* Gradient overlay to make sure the icon is visible */}
+  <div className="visual-overlay"></div>
+  
+  <div className="proj-card-icon">{getIcon(p.category)}</div>
+</div>
+
+                {/* Content Section */}
+                <div className="proj-card-content">
+                  <div className="proj-card-meta">
+                    <span className="proj-year">{p.year}</span>
+                    <span className="proj-category">{p.category}</span>
+                  </div>
+                  
+                  <h3 className="proj-card-name">{p.name}</h3>
+                  <p className="proj-card-desc">{p.description}</p>
+                  
+                  <div className="proj-card-bottom">
+                    <div className="proj-card-tags">
+                      {p.tags.slice(0, 3).map(t => <span key={t} className="tag">{t}</span>)}
+                      {p.tags.length > 3 && <span className="tag tag-more">+{p.tags.length - 3}</span>}
+                    </div>
+                    <div className="proj-card-arrow">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </div>
                   </div>
-                )}
+                </div>
+
               </Link>
             </FadeUp>
           ))}
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="proj-cta">
-        <FadeUp>
-          <div className="proj-cta-inner">
-            <h2 className="proj-cta-title">READY TO SCALE?</h2>
-            <p className="proj-cta-sub">
-              I'm currently accepting new commissions for Q4 2024. If you have a project
-              that requires extreme performance and custom architecture, let's talk.
-            </p>
-            <Link to="/contact" className="btn-primary">START A CONSULTATION</Link>
-          </div>
-        </FadeUp>
       </section>
 
       <Footer />

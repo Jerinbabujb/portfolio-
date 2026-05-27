@@ -3,6 +3,7 @@ export const projects = [
     id: 'unisoul',
     name: 'UNISOUL – NEURODIVERGENT DATING & SOCIAL APP',
     year: '2026', category: 'WEB PROJECT',
+    image:"/my-image.png",
     description: 'A borderless matchmaking and social networking platform featuring vector-based pairing, biometric authentication, and synchronized real-time media sharing.',
     tags: ['NEXT.JS 14', 'WEBKIT', 'RUST'],
     status: 'ACTIVE PROJECT',

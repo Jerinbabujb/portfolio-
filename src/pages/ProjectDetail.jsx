@@ -60,18 +60,29 @@ export default function ProjectDetail() {
       {/* BANNER */}
       <section className="detail-banner" ref={bannerRef}>
         <motion.div className="banner-inner" style={{ y: bannerY, opacity: bannerOpacity }}>
-          <div className="banner-placeholder">
-            <div className="banner-grid" />
-            <div className="banner-text">
-              <div className="banner-label">PROJECT</div>
-              <div className="banner-name">{project.name}</div>
+          {project.image ? (
+            <div className="banner-image-container">
+              <img src={project.image} alt={project.name} className="banner-image" />
+              <div className="banner-overlay"></div>
+              <div className="banner-text">
+                <div className="banner-label">PROJECT</div>
+                <div className="banner-name">{project.name}</div>
+              </div>
             </div>
-            <motion.div
-              className="banner-glow"
-              animate={{ opacity: [0.3, 0.7, 0.3], x: ['-5%', '5%', '-5%'] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          </div>
+          ) : (
+            <div className="banner-placeholder">
+              <div className="banner-grid" />
+              <div className="banner-text">
+                <div className="banner-label">PROJECT</div>
+                <div className="banner-name">{project.name}</div>
+              </div>
+              <motion.div
+                className="banner-glow"
+                animate={{ opacity: [0.3, 0.7, 0.3], x: ['-5%', '5%', '-5%'] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </div>
+          )}
         </motion.div>
       </section>
 
@@ -113,40 +124,44 @@ export default function ProjectDetail() {
               <div className="dc-section-label">The Vision</div>
               <p className="dc-vision">{project.vision}</p>
               <div className="dc-divider" />
-              {project.fullDescription.split('\n\n').map((para, i) => (
+              {project.fullDescription?.split('\n\n').map((para, i) => (
                 <p key={i} className="dc-para">{para}</p>
               ))}
             </FadeUp>
 
             {/* Features */}
-            <FadeUp delay={0.1}>
-              <div className="features-grid">
-                {project.features.map((f, i) => (
-                  <motion.div
-                    key={i}
-                    className="feature-card"
-                    whileHover={{ borderColor: 'rgba(0,212,255,0.25)', y: -3 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="feature-title">{f.title}</div>
-                    <div className="feature-desc">{f.desc}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </FadeUp>
+            {project.features && project.features.length > 0 && (
+              <FadeUp delay={0.1}>
+                <div className="features-grid">
+                  {project.features.map((f, i) => (
+                    <motion.div
+                      key={i}
+                      className="feature-card"
+                      whileHover={{ borderColor: 'rgba(0,212,255,0.25)', y: -3 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="feature-title">{f.title}</div>
+                      <div className="feature-desc">{f.desc}</div>
+                    </motion.div>
+                  ))}
+                </div>
+              </FadeUp>
+            )}
 
             {/* Code */}
-            <FadeUp delay={0.15}>
-              <div className="code-block-detail">
-                <div className="cbd-header">
-                  <span className="cbd-dot red" />
-                  <span className="cbd-dot amber" />
-                  <span className="cbd-dot grn" />
-                  <span className="cbd-filename">{id.toUpperCase()}.RS</span>
+            {project.code && (
+              <FadeUp delay={0.15}>
+                <div className="code-block-detail">
+                  <div className="cbd-header">
+                    <span className="cbd-dot red" />
+                    <span className="cbd-dot amber" />
+                    <span className="cbd-dot grn" />
+                    <span className="cbd-filename">{id.toUpperCase()}.RS</span>
+                  </div>
+                  <pre className="cbd-body"><code>{project.code}</code></pre>
                 </div>
-                <pre className="cbd-body"><code>{project.code}</code></pre>
-              </div>
-            </FadeUp>
+              </FadeUp>
+            )}
           </div>
 
           {/* Right Sidebar */}
@@ -155,37 +170,53 @@ export default function ProjectDetail() {
               <div className="stack-card">
                 <div className="stack-label">TECHNOLOGY STACK</div>
                 <div className="stack-tags">
-                  {project.stack.map(t => <span key={t} className="tag cyan">{t}</span>)}
+                  {project.stack?.map(t => <span key={t} className="tag cyan">{t}</span>)}
                 </div>
               </div>
             </SlideIn>
 
-            <SlideIn from="right" delay={0.15}>
-              <div className="sidebar-actions">
-               <a href={project.live} target='_blank'><motion.button className="btn-live" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  LIVE DEMO ↗
-                </motion.button> </a>
-                <a href={project.github} target='_blank'>
-                <motion.button className="btn-github" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  VIEW GITHUB &lt;/&gt;
-                </motion.button>
-                </a>
-              </div>
-            </SlideIn>
+            {/* Conditionally Render Actions Container */}
+            {(project.live || project.github) && (
+              <SlideIn from="right" delay={0.15}>
+                <div className="sidebar-actions">
+                  
+                  {/* Conditionally Render Live Demo Button */}
+                  {project.live && (
+                    <a href={project.live} target='_blank' rel="noreferrer">
+                      <motion.button className="btn-live" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                        LIVE DEMO ↗
+                      </motion.button> 
+                    </a>
+                  )}
 
-            <SlideIn from="right" delay={0.2}>
-              <div className="stats-grid">
-                {project.stats.map((s, i) => (
-                  <motion.div key={i} className="stat-item"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + i * 0.08 }}>
-                    <div className="stat-value">{s.value}</div>
-                    <div className="stat-label">{s.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </SlideIn>
+                  {/* Conditionally Render Github Button */}
+                  {project.github && (
+                    <a href={project.github} target='_blank' rel="noreferrer">
+                      <motion.button className="btn-github" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                        VIEW GITHUB &lt;/&gt;
+                      </motion.button>
+                    </a>
+                  )}
+                  
+                </div>
+              </SlideIn>
+            )}
+
+            {project.stats && (
+              <SlideIn from="right" delay={0.2}>
+                <div className="stats-grid">
+                  {project.stats.map((s, i) => (
+                    <motion.div key={i} className="stat-item"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.4 + i * 0.08 }}>
+                      <div className="stat-value">{s.value}</div>
+                      <div className="stat-label">{s.label}</div>
+                    </motion.div>
+                  ))}
+                </div>
+              </SlideIn>
+            )}
           </motion.div>
         </div>
       </section>
@@ -207,16 +238,24 @@ export default function ProjectDetail() {
               {related.map((rp, i) => (
                 <FadeUp key={rp.id} delay={i * 0.08}>
                   <Link to={`/work/${rp.id}`} className="related-card">
+                    
+                    {/* Conditionally render image or lines in Related Cards */}
                     <div className="related-img">
-                      <div className="related-img-lines">
-                        {Array.from({length: 5}).map((_,j) => <div key={j} className="rel-line" style={{width:`${30+(j*15)%55}%`}} />)}
-                      </div>
+                      {rp.image ? (
+                        <img src={rp.image} alt={rp.name} className="related-card-img" />
+                      ) : (
+                        <div className="related-img-lines">
+                          {Array.from({length: 5}).map((_,j) => <div key={j} className="rel-line" style={{width:`${30+(j*15)%55}%`}} />)}
+                        </div>
+                      )}
+                      <div className="related-overlay"></div>
                     </div>
+
                     <div className="related-info">
                       <div className="related-name">{rp.name}</div>
-                      <div className="related-desc">{rp.description.slice(0, 70)}...</div>
+                      <div className="related-desc">{rp.description?.slice(0, 70)}...</div>
                       <div className="related-tags">
-                        {rp.tags.slice(0, 2).map(t => <span key={t} className="tag">{t}</span>)}
+                        {rp.tags?.slice(0, 2).map(t => <span key={t} className="tag">{t}</span>)}
                       </div>
                     </div>
                   </Link>
