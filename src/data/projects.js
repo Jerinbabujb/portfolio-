@@ -3,7 +3,7 @@ export const projects = [
     id: 'unisoul',
     name: 'UNISOUL – NEURODIVERGENT DATING & SOCIAL APP',
     year: '2026', category: 'WEB PROJECT',
-    image:"/my-image.png",
+    image:"/unisoul.jpeg",
     description: 'A borderless matchmaking and social networking platform featuring vector-based pairing, biometric authentication, and synchronized real-time media sharing.',
     tags: ['NEXT.JS 14', 'WEBKIT', 'RUST'],
     status: 'ACTIVE PROJECT',
@@ -16,7 +16,7 @@ export const projects = [
       { title: 'Granular Privacy Controls', desc: 'Features social media visibility toggles, user blocking, and strict custom JWT protected routes.' },
     ],
     stack: ['React', 'Supabase','Prisma','WebSockets','Transformers', 'TAILWIND', 'NODEJS', 'EXPRESSJS', 'WEBSOCKET','JWT','CLOUDINARY'],
-    stats: [{ label: 'COMMITS', value: '8.2k' }, { label: 'LATENCY', value: '<50ms' }, { label: 'NODES', value: '500+' }, { label: 'UPTIME', value: '99.9%' }],
+    stats: [],
     code: `// Core matching logic using Prisma and pgvector for cosine similarity
 const findTopMatches = async (userEmbedding: number[]) => {
   const matches = await prisma.$queryRaw
@@ -28,7 +28,7 @@ const findTopMatches = async (userEmbedding: number[]) => {
   ;
   return matches;
 };`,
-    related: ['kinetic_ui', 'pulse_metric', 'quantum_flow'],
+    related: ['chatter_box', 'tragobook', 'everleaves-systems'],
     live:'https://unisoul-web.netlify.app/',
     // github:'https://github.com/Jerinbabujb/chatterbox-forntend'
   },
@@ -36,6 +36,7 @@ const findTopMatches = async (userEmbedding: number[]) => {
     id: 'focus_flow',
     name: 'FOCUS FLOW – PRODUCTIVITY & FINANCE TRACKER',
     year: '2026', category: 'MOBILE PROJECT',
+    image:'/focus-flow.png',
     description: 'A unified React Native application for managing daily tasks, collaborative grocery lists, and peer-to-peer debt tracking.',
     tags: ['REACT', 'TAILWIND'],
     status: 'ACTIVE PROJECT',
@@ -48,7 +49,7 @@ const findTopMatches = async (userEmbedding: number[]) => {
       { title: 'Real-Time Cloud Sync', desc: 'Powered exclusively by Firebase Authentication and Firestore for instant data propagation across all authorized devices.' },
     ],
     stack: ['React Native', 'Expo Go', 'Firebase ', 'Firestore'],
-    stats: [{ label: 'COMMITS', value: '5.1k' }, { label: 'COMPONENTS', value: '40+' }, { label: 'LATENCY', value: '<16ms' }, { label: 'STARS', value: '2.1k' }],
+    stats: [],
     code: `// Firestore listener for real-time task sync and rollover logic
 const subscribeToTasks = (userId) => {
   return onSnapshot(
@@ -63,12 +64,14 @@ const subscribeToTasks = (userId) => {
     }
   );
 };`,
-    related: ['unisoul', 'chatter_box', 'node_core'],
+    related: ['weather', 'chatter_box', 'unisoul'],
+    live:'https://focus-flow-website.netlify.app/',
   },
   {
     id: 'chatter_box',
     name: 'CHATTER BOX – REAL-TIME CHAT APPLICATION',
     year: '2025', category: 'WEB PROJECT',
+    image:'/chatter-box.png',
     description: 'A high-speed messaging dashboard featuring live text transmission, persistent media galleries, and secure socket connections.',
     tags: ['THREE.JS', 'GO', 'KAFKA'],
     status: 'ACTIVE PROJECT',
@@ -81,7 +84,7 @@ const subscribeToTasks = (userId) => {
       { title: 'Optimized Storage', desc: 'Image uploads strictly routed through Cloudinary for optimized delivery, keeping the MongoDB footprint lightweight.' },
     ],
     stack: ['React (Vite)', 'Node.js', 'Express', 'MongoDB', 'Socket.io'],
-    stats: [{ label: 'COMMITS', value: '11.4k' }, { label: 'EVENTS/S', value: '50k+' }, { label: 'LATENCY', value: '<10ms' }, { label: 'SHIPMENTS', value: '12k+' }],
+    stats: [],
     code: `// WebSocket event handling for real-time message broadcasting
 io.on("connection", (socket) => {
   socket.on("send_message", async (data) => {
@@ -96,12 +99,13 @@ io.on("connection", (socket) => {
   });
 });
 }`,
-    related: ['unisoul', 'focus_flow', 'stratus_os'],
+    related: ['unisoul', 'focus_flow', 'stream'],
   },
   {
     id: 'stream',
     name: 'VIDEO STREAM PLATFORM',
     year: '2025', category: 'STREAMING PROJECT',
+    image:'/videostream.png',
     description: 'A cloud-based video streaming application utilizing chunked data delivery for smooth playback.',
     tags: ['SOLIDITY', 'WEB3.JS'],
     status: 'ACTIVE PROJECT',
@@ -112,7 +116,7 @@ io.on("connection", (socket) => {
       { title: 'Media Processing', desc: 'Integrates FFmpeg on the server side to handle video transcoding and segment generation.' },
       { title: 'Cloud Integration', desc: 'Streams media content directly from cloud storage without requiring a dedicated database.' }    ],
     stack: ['React Vite', 'Node.js', 'Express.js', 'FFmpeg', 'Video.js', 'HLS/DASH', 'CSS'],
-    stats: [{ label: 'COMMITS', value: '6.7k' }, { label: 'PROOFS/DAY', value: '50k+' }, { label: 'VERIFY TIME', value: '<200ms' }, { label: 'GAS SAVED', value: '94%' }],
+    stats: [],
     code: `// CypherVault.sol
 contract CypherVault {
   function verifyAndIssue(
@@ -125,12 +129,15 @@ contract CypherVault {
     credentialId = _issueCredential(msg.sender, pubSignals[0]);
   }
 }`,
-    related: ['mint_stream', 'bit_archive', 'neural_dock'],
+    related: ['unisoul', 'focus_flow', 'chatter_box'],
+    live:'https://video-stream-55vf.onrender.com/',
+    github:'https://github.com/Jerinbabujb/video-stream',
   },
   {
     id: 'weather',
     name: 'WEATHER-TIME CROSS PLATFORM APP',
     year: '2024', category: 'MOBILE PROJECT',
+    image:'/weather.png',
     description: 'A global utility application built to fetch real-time weather metrics and localized time zones for any city worldwide.',
     tags: ['AWS', 'KUBERNETES'],
     status: 'STABLE',
@@ -141,7 +148,7 @@ contract CypherVault {
       { title: 'Localized Time Sync', desc: 'Utilizes GeoNames API to calculate and display the exact local time corresponding to the searched geography.' },
       { title: 'Cross-Platform Delivery', desc: 'Built natively with React Native and deployed via Expo Go for seamless iOS and Android accessibility.' }    ],
     stack: ['React Native', 'Expo Go', 'JavaScript', 'OpenWeatherMap API', 'GeoNames API'],
-    stats: [{ label: 'COMMITS', value: '9.3k' }, { label: 'DEPLOY TIME', value: '<30s' }, { label: 'LATENCY', value: '<50ms' }, { label: 'UPTIME', value: '99.99%' }],
+    stats: [],
     code: `// warm.ts
 export class StratusOrchestrator {
   async onNavigationEvent(route: string, userId: string) {
@@ -153,12 +160,14 @@ export class StratusOrchestrator {
     );
   }
 }`,
-    related: ['kinetic_ui', 'node_core', 'quantum_flow'],
+    related: ['focus_flow', 'unisoul', 'chatter_box'],
+    github:'https://github.com/Jerinbabujb/weather_app',
   },
   {
     id: 'bse',
     name: 'Bahrain Society of Engineers – MEMBERSHIP SYSTEM',
     year: '2025', category: 'WEB PROJECT',
+    image:'/bse.png',
     description: 'A comprehensive portal for managing organizational memberships, payment plans, and digital credentials.',
     tags: ['ETHEREUM', 'PYTHON'],
     status: 'ACTIVE PROJECT',
@@ -171,7 +180,7 @@ export class StratusOrchestrator {
       { title: 'Internal Messaging', desc: 'Built-in communication module allowing direct member-to-admin messaging and global announcements.' },
     ],
     stack: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'WPBakery', 'ARMember'],
-    stats: [{ label: 'COMMITS', value: '7.8k' }, { label: 'EVENTS/DAY', value: '400k+' }, { label: 'DETECT TIME', value: '<800ms' }, { label: 'MARKETS', value: '8' }],
+    stats: [],
     code: `# arbitrage.py
 class ArbitrageEngine:
     async def scan(self, collection_slug: str):
@@ -183,12 +192,14 @@ class ArbitrageEngine:
             if floor < vwap * (1 - self.threshold):
                 signals.append(ArbitrageSignal(market, floor, vwap))
         return sorted(signals, key=lambda s: s.discount, reverse=True)`,
-    related: ['cypher_vault', 'pulse_metric', 'chroma_sync'],
-  },
+    related: ['everleaves-systems', 'eyf', 'tragobook'],
+    live:'https://member.bse.bh/ar/',
+      },
   {
     id: 'tragobook',
     name: 'TRAGOBOOK – HOTEL BOOKING PLATFORM',
     year: '2023', category: 'WEB PROJECT',
+    image:'/tragobook.png',
     description: 'A landing page and integrated mobile application for seamless hotel reservations, featuring multilingual support.',
     tags: ['C++', 'ZIGBEE'],
     status: 'STABLE',
@@ -199,7 +210,7 @@ class ArbitrageEngine:
       { title: 'Multilingual UI', desc: 'Integrated translation functionality to serve an international user base navigating the landing page.' },
       { title: 'Mobile Webview', desc: 'A React Native shell application wrapping the core booking platform for mobile app store distribution.' }    ],
     stack: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'Elementor', 'React Native'],
-    stats: [{ label: 'COMMITS', value: '4.2k' }, { label: 'FIXTURES', value: '2400+' }, { label: 'LATENCY', value: '<8ms' }, { label: 'ZONES', value: '48' }],
+    stats: [],
     code: `// orchestrator.cpp
 void Orchestrator::onAudioFrame(const AudioBuffer& buf) {
   auto spectrum = FFTAnalyzer::compute(buf, FFT_SIZE_1024);
@@ -212,12 +223,14 @@ void Orchestrator::onAudioFrame(const AudioBuffer& buf) {
     });
   }
 }`,
-    related: ['kinetic_ui', 'mesh_grid', 'neural_dock'],
+    related: ['everleaves-systems', 'eyf', 'bse'],
+    live:'https://www.tragobook.com/',
   },
   {
     id: 'everleaves-systems',
     name: 'EVERLEAVES SYSTEMS – CORPORATE WEBSITE',
     year: '2025', category: 'WEB PROJECT',
+    image:'/everleaves-logo.png',
     description: 'A professional digital presence highlighting company services, mission, and team structure.',
     tags: ['PYTORCH', 'GRAPHQL'],
     status: 'ACTIVE PROJECT',
@@ -229,7 +242,7 @@ void Orchestrator::onAudioFrame(const AudioBuffer& buf) {
       { title: 'Contact Integration', desc: 'Direct communication routing for inbound corporate inquiries.' }
     ],
     stack: ['WordPress', 'HTML', 'CSS', 'Elementor', 'MySQL'],
-    stats: [{ label: 'COMMITS', value: '5.9k' }, { label: 'SESSIONS/DAY', value: '1M+' }, { label: 'UPDATE FREQ', value: '10s' }, { label: 'LIFT', value: '+18%' }],
+    stats: [],
     code: `# conversion_lstm.py
 class ConversionLSTM(nn.Module):
     def __init__(self, input_dim=32, hidden_dim=128):
@@ -243,12 +256,14 @@ class ConversionLSTM(nn.Module):
     def forward(self, event_seq):
         lstm_out, _ = self.lstm(event_seq)
         return self.head(lstm_out[:, -1, :])`,
-    related: ['neural_dock', 'quantum_flow', 'mint_stream'],
+    related: ['eyf', 'tragobook', 'unisoul'],
+    live:'https://everleavessystems.com/',
   },
   {
     id: 'eyf',
     name: 'ENGAGE YOUTH FOUNDATION',
     year: '2023', category: 'WEB PROJECT',
+    image:'/eyf.png',
     description: 'A non-profit organization platform featuring blog updates, upcoming events, and community outreach details.',
     tags: ['TYPESCRIPT', 'FIGMA API'],
     status: 'STABLE',
@@ -260,7 +275,7 @@ class ConversionLSTM(nn.Module):
       { title: 'Mission Overview', desc: "Clear presentation of the foundation's goals, team structure, and avenues for contact." }
     ],
     stack: ['WordPress', 'HTML', 'CSS', 'Elementor', 'MySQL'],
-    stats: [{ label: 'COMMITS', value: '3.4k' }, { label: 'VARIANTS', value: '500+' }, { label: 'GEN TIME', value: '<5s' }, { label: 'PLUGINS', value: '3' }],
+    stats: [],
     code: `// generator.ts
 export async function generateLayouts(
   intent: string, count = 100
@@ -274,12 +289,13 @@ export async function generateLayouts(
   }
   return variants;
 }`,
-    related: ['kinetic_ui', 'chroma_sync', 'stratus_os'],
+    related: ['focus_flow', 'chatter_box', 'unisoul'],
   },
   {
     id: 'web-scrap',
     name: 'WEB SCRAPING TOOL',
     year: '2023', category: 'AUTOMATION PROJECT',
+    image:'/webscrap.png',
     description: 'A Python-based utility engineered to extract critical data assets—including text, images, and embedded links—from any provided URL.',
     tags: ['NODE.JS', 'REDIS'],
     status: 'ACTIVE PROJECT',
@@ -290,7 +306,7 @@ export async function generateLayouts(
       { title: 'PDF Conversion', desc: 'Integrates html2pdf capabilities for generating static document reports based on the scraped data.' },
       { title: 'Stateless Processing', desc: 'Operates strictly via system cache without relying on a persistent database architecture.' }    ],
     stack: ['Django', 'Python', 'BeautifulSoup4', 'Requests', 'html2pdf'],
-    stats: [{ label: 'COMMITS', value: '6.1k' }, { label: 'OVERHEAD', value: '<5ms' }, { label: 'REQ/S', value: '10k+' }, { label: 'CACHE HIT', value: '91%' }],
+    stats: [],
     code: `// pipeline.ts
 gateway.addHook('preHandler', async (req, reply) => {
   const limited = await RateLimiter.check(req.headers['x-consumer-id']);
@@ -298,12 +314,13 @@ gateway.addHook('preHandler', async (req, reply) => {
   const cached = await EdgeCache.get(req.routerPath, req.query);
   if (cached) return reply.send(cached);
 });`,
-    related: ['stratus_os', 'quantum_flow', 'neural_dock'],
+    related: ['chatter_box', 'unisoul', 'focus_flow'],
   },
   {
     id: 'huloop',
     name: 'HULOOP AUTOMATION',
     year: '2024', category: 'AUTOMATION PROJECT',
+    image:'/huloop.png',
     description: 'An enterprise workflow automation tool focused on accelerating daily human tasks such as data entry and sheet validation.',
     tags: ['WEBASSEMBLY', 'WEBGL'],
     status: 'ACTIVE PROJECT',
@@ -315,7 +332,7 @@ gateway.addHook('preHandler', async (req, reply) => {
       { title: 'Cost Reduction', desc: 'Measurably increases processing speed, directly reducing required human labor hours.' }
     ],
     stack: ['HuLoop Tool', 'JavaScript', 'Python'],
-    stats: [{ label: 'COMMITS', value: '4.8k' }, { label: 'BASE PAIRS', value: '3B+' }, { label: 'ZOOM TIME', value: '<100ms' }, { label: 'K-MER', value: '16-mer' }],
+    stats: [],
     code: `// sequence_engine.rs
 #[wasm_bindgen]
 impl SequenceEngine {
@@ -328,12 +345,13 @@ impl SequenceEngine {
     engine
   }
 }`,
-    related: ['neural_dock', 'quantum_flow', 'pulse_metric'],
+    related: ['unisoul', 'focus_flow', 'chatter_box'],
   },
   {
     id: 'slack',
     name: 'SLACK CLONE – REAL-TIME WORKSPACE',
     year: '2023', category: 'WEB PROJECT',
+    image:'/slack.jpeg',
     description: 'A comprehensive replica of the Slack workspace experience featuring instantaneous messaging and dynamic channel organization.',
     tags: ['C', 'LINUX KERNEL'],
     status: 'STABLE',
@@ -345,7 +363,7 @@ impl SequenceEngine {
       { title: 'Modern UI Architecture', desc: 'Built extensively with TailwindCSS for a highly responsive, enterprise-grade aesthetic mirroring the original platform.' },
     ],
     stack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'WebSockets', 'Convex'],
-    stats: [{ label: 'COMMITS', value: '2.9k' }, { label: 'ARCHIVE SIZE', value: '4.2PB' }, { label: 'SEEK REDUCTION', value: '94%' }, { label: 'ECC RECOVERY', value: '30%' }],
+    stats: [],
     code: `/* extent_alloc.c */
 int ba_alloc_extent(struct ba_sb *sb, u64 size_bytes,
                     struct ba_extent *out_extent) {
@@ -356,7 +374,7 @@ int ba_alloc_extent(struct ba_sb *sb, u64 size_bytes,
   rs_encode_extent(out_extent, sb->ecc_params);
   return 0;
 }`,
-    related: ['cypher_vault', 'node_core', 'gene_map'],
+    related: ['unisoul', 'focus_flow', 'chatter_box'],
   }
 ];
 

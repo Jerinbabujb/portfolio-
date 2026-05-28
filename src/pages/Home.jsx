@@ -6,15 +6,15 @@ import './Home.css';
 import { TypeAnimation } from 'react-type-animation';
 
 const tools = [
-{ label: 'TYPESCRIPT', sym: '</>' },
+  { label: 'REACT / VITE', sym: '⚛' },
+  { label: 'NODE.JS', sym: '⬢' },
   { label: 'POSTGRESQL', sym: '▣' },
-  { label: 'HTML/CSS', sym: '☁' },
-  { label: 'DOCKER', sym: '⬡' },
-  { label: 'MERN', sym: '✦' }, // This was a "break" in your cycle
-  { label: 'JAVASCRIPT', sym: '⬢' },
-  { label: 'MONGODB', sym: '</>' },
-  { label: 'GITHUB', sym: '▣' },
-  { label: 'WORDPRESS', sym: '☁' }, // Keeping the cycle: Code -> Box -> Cloud
+  { label: 'TYPESCRIPT', sym: '</>' },
+  { label: 'REACT NATIVE', sym: '✦' },
+  { label: 'WORDPRESS / PHP', sym: '☁' },
+  { label: 'WEBSOCKETS', sym: '⬡' },
+  { label: 'PRISMA / MONGODB', sym: '▲' },
+  { label: 'DOCKER / DEPLOYMENT', sym: '◈' }, 
 ];
 
 function FadeUp({ children, delay = 0 }) {
@@ -68,7 +68,7 @@ export default function Home() {
       <section className="hero" ref={heroRef}>
         <motion.div className="hero-content" style={{ y: heroY, opacity: heroOpacity }}>
          <TypeAnimation
-            sequence={['Jerin Babu', 1000, 'Web Developer', 1000, 'Mobile Developer', 1000]}
+            sequence={['Jerin Babu', 1000, 'Technical Lead', 1000, 'Full-Stack Developer', 1000]}
             wrapper="span"
             speed={50}
             className="type-animation-text"
@@ -122,7 +122,6 @@ export default function Home() {
           <span>SCROLL</span>
         </div>
 
-        {/* Animated grid bg */}
         <div className="hero-grid" />
       </section>
 
@@ -133,7 +132,7 @@ export default function Home() {
             <SlideIn from="left">
               <div className="photo-frame">
                 <div className="photo-placeholder">
-                  <img src='./my-image.png'/>
+                  <img src='/my-image.png' alt="Jerin Babu" />
                   <div className="photo-label">FULL STACK<br />DEVELOPER</div>
                 </div>
                 <div className="exp-badge">
@@ -155,20 +154,18 @@ export default function Home() {
             </FadeUp>
             <FadeUp delay={0.2}>
               <p className="about-body">
-                Full-stack software developer with nearly 3 years of experience in WordPress, mobile/web develop ment, and backend API integration. Skilled in modern frameworks, automation tools, and client deployment.
-
-
+                Full-stack software developer with nearly 3 years of experience in React, modern JavaScript frameworks, mobile/web development, and robust backend database integration. Skilled in high-performance application architecture, real-time data sync, and deploying secure, scalable platforms.
               </p>
             </FadeUp>
             <FadeUp delay={0.3}>
               <div className="about-pillars">
                 <div className="pillar">
                   <div className="pillar-title">Scalable Architecture</div>
-                  <div className="pillar-desc">Cloud-native designs built for millions of requests.</div>
+                  <div className="pillar-desc">Cloud-native designs built for seamless data flow and complex queries.</div>
                 </div>
                 <div className="pillar">
                   <div className="pillar-title">UX Precision</div>
-                  <div className="pillar-desc">Focusing on high-fidelity animations and performance.</div>
+                  <div className="pillar-desc">Focusing on high-fidelity responsive layouts and real-time interaction.</div>
                 </div>
               </div>
             </FadeUp>
@@ -183,7 +180,7 @@ export default function Home() {
             <div className="section-label">JOURNEY</div>
             <div className="career-head">
               <h2 className="career-title">Career Architecture</h2>
-              <div className="career-year">2023—2026</div>
+              <div className="career-year">2019—2026</div>
             </div>
           </FadeUp>
 
@@ -193,36 +190,47 @@ export default function Home() {
                 date: 'AUG 2025 — PRESENT',
                 title: 'Jr Web Developer',
                 company: 'Fospe Technologies W.L.L',
-                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
+                desc: [
+                  'Developing and maintaining high-performance web applications using modern front-end frameworks.',
+                  'Collaborating with cross-functional teams to architect scalable solutions and improve overall product quality.',
+                  'Implementing responsive, accessible UI designs and ensuring strict cross-browser compatibility.',
+                  'Participating in comprehensive code reviews and optimizing deployment workflows.'
+                ],
                 tags: ['WORDPRESS', 'DEPLOYMENT', 'PHP'],
               },
               {
                 date: 'APRIL 2019 — PRESENT',
-                title: 'Freelancer',
-                company: 'Freelancer',
-                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
-                tags: ['REACT', 'TYPESCRIPT', 'MONGODB','MERN','TAILWINDCSS'],
+                title: 'Freelance Full-Stack Developer',
+                company: 'Independent',
+                desc: [
+                  'Architecting complex, full-stack architectures including the UniSoul matchmaking engine and Focus Flow productivity app.',
+                  'Handling end-to-end deployment, moving concepts from vector-based algorithms to responsive UI/UX.',
+                  'Integrating advanced features such as real-time WebSockets, real-time video sync, and secure JWT authentication.',
+                  'Managing database design, containerization via Docker, and continuous cloud deployment.'
+                ],
+                tags: ['REACT', 'TYPESCRIPT', 'MONGODB', 'MERN', 'TAILWINDCSS'],
               },
               {
                 date: 'OCT 2024 — MAR 2025',
                 title: 'Software Development Engineer I',
                 company: 'Innoai',
-                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
-                tags: ['WORDPRESS', 'DEPLOYMENT', 'AUTOMATION','HULOOP'],
+                desc: [
+                  'Collaborated closely with an off-shore engineering team to script and deploy automated workflow architectures.',
+                  'Utilized HuLoop and Python to automate high-volume data entry and extensive spreadsheet validation tasks.',
+                  'Measurably reduced human error and operational overhead across 3 major client projects through intelligent automation.'
+                ],
+                tags: ['WORDPRESS', 'DEPLOYMENT', 'AUTOMATION', 'HULOOP'],
               },
               {
-                date: 'NOV 2023 — SEPT 2024',
-                title: 'Software Development Engineer I',
+                date: 'AUG 2023 — SEPT 2024',
+                title: 'Software Development Engineer I & Web Dev Intern',
                 company: 'Everleaves Systems',
-                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
-                tags: ['WORDPRESS', 'DJANGO', 'DEPLOYMENT'],
-              },
-              {
-                date: 'AUG 2023 — OCT 2023',
-                title: 'Web Development Intern',
-                company: 'Everleaves Systems',
-                desc: 'Developing and maintaining web applications using React.js and other related technologies. Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products. Implementing responsive design and ensuring cross-browser compatibility. Participating in code reviews and providing constructive feedback to other developers.',
-                tags: ['REACT', 'MONGODB','NODEJS', 'EXPRESSJS','WORDPRESS'],
+                desc: [
+                  'Developed comprehensive corporate web portals and custom multi-lingual hotel booking platforms (Tragobook).',
+                  'Integrated third-party APIs, authentication protocols, and wrapped responsive layouts into native React Native mobile apps.',
+                  'Managed database architecture, responsive HTML/CSS templating, and direct client deployment.'
+                ],
+                tags: ['WORDPRESS', 'DJANGO', 'REACT', 'NODE.JS', 'MONGODB'],
               },
             ].map((item, i) => (
               <SlideIn key={i} from="left" delay={i * 0.1}>
@@ -233,7 +241,14 @@ export default function Home() {
                       <h3 className="timeline-title">{item.title}</h3>
                       <span className="tag">{item.company}</span>
                     </div>
-                    <p className="timeline-desc">{item.desc}</p>
+                    
+                    {/* Render Description as a List */}
+                    <ul className="timeline-desc-list">
+                      {item.desc.map((point, idx) => (
+                        <li key={idx} className="timeline-desc-point">{point}</li>
+                      ))}
+                    </ul>
+
                     <div className="timeline-tags">
                       {item.tags.map(t => <span key={t} className="tag">{t}</span>)}
                     </div>
@@ -289,11 +304,11 @@ export default function Home() {
               <div className="section-label">TRANSMISSION</div>
               <h2 className="cta-title">Let's <span className="cta-green">Sync.</span></h2>
               <p className="cta-body">
-                I am currently accepting select opportunities for Q4 2024. If you have a project
+                I am currently accepting select opportunities for Q4 2026. If you have a project
                 that requires a fusion of architectural precision and innovative UI, reach out.
               </p>
               <div className="cta-contact-info">
-               <a href='mailto: jerin.babujb@gmail.com' target='_blank'> <div className="contact-row">✉ jerin.babujb@gmail.com</div></a>
+               <a href='mailto:jerin.babujb@gmail.com' target='_blank' rel="noreferrer"> <div className="contact-row">✉ jerin.babujb@gmail.com</div></a>
                 <div className="contact-row">⊙ Manama, Bahrain // Remote</div>
               </div>
             </FadeUp>
