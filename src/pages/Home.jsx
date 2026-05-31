@@ -90,7 +90,7 @@ export default function Home() {
             transition={{ delay: 0.85, duration: 0.6 }}
           >
             <Link to="/projects" className="btn-primary">EXPLORE WORK</Link>
-            <Link to="/work" className="btn-ghost">VIEW STACK</Link>
+            <Link to="/#stack" className="btn-ghost">VIEW STACK</Link>
           </motion.div>
         </motion.div>
 
@@ -261,7 +261,7 @@ export default function Home() {
       </section>
 
       {/* TOOLING */}
-      <section className="tooling-section" ref={toolingRef}>
+      <section id="stack" className="tooling-section" ref={toolingRef}>
         <motion.div className="tooling-bg" style={{ y: toolingBgY }} />
         <div className="tooling-inner">
           <FadeUp>
