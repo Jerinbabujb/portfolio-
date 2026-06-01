@@ -43,9 +43,7 @@ export default function Projects() {
           <motion.p className="proj-hero-sub"
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.7 }}>
-            A collection of high-performance digital environments, built with technical
-            precision and editorial intent. Each entry represents a unique challenge in
-            scale and kinetic interaction.
+           A collection of high-performance web and mobile applications, built with technical precision and a focus on clean architecture. Each entry represents a unique challenge in full-stack development, from managing real-time data synchronization to delivering seamless cross-platform experiences.
           </motion.p>
         </motion.div>
         <div className="proj-hero-grid" />
