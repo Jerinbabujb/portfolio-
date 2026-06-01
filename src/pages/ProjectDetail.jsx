@@ -42,6 +42,7 @@ export default function ProjectDetail() {
 
   const contentRef = useRef(null);
   const { scrollYProgress: contentScroll } = useScroll({ target: contentRef, offset: ['start end', 'end start'] });
+  // Parallax effect on sidebar
   const sidebarY = useTransform(contentScroll, [0, 1], ['-5%', '5%']);
 
   if (!project) {
