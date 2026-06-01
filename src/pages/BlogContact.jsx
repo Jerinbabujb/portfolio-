@@ -1,6 +1,7 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import Footer from '../components/Footer';
 import './Blog.css';
 
@@ -79,6 +80,42 @@ export function Contact() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const titleY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
+  // EmailJS form ref and state for user feedback
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // TODO: Replace these with your actual EmailJS IDs
+    const SERVICE_ID = 'service_phwalbq';
+    const TEMPLATE_ID = 'template_l3vkg5b';
+    const PUBLIC_KEY = 'IWG7FhkVrzLj3ZXuT';
+
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
+        publicKey: PUBLIC_KEY,
+      })
+      .then(
+        () => {
+          setIsSubmitting(false);
+          setSubmitStatus('success');
+          form.current.reset(); // Clear the form after sending
+          
+          // Reset button text after 3 seconds
+          setTimeout(() => setSubmitStatus(null), 3000);
+        },
+        (error) => {
+          setIsSubmitting(false);
+          setSubmitStatus('error');
+          console.log('FAILED...', error.text);
+        }
+      );
+  };
+
   return (
     <div className="contact-page">
       <section className="contact-hero" ref={heroRef}>
@@ -103,46 +140,62 @@ export function Contact() {
             <div className="contact-info">
               <div className="ci-item">
                 <div className="ci-label">EMAIL</div>
-               <a href='mailto:jerin.babujb@gmail.com' target='_blank'> <div className="ci-value">jerin.babujb@gmail.com</div></a>
+                <a href='mailto:jerin.babujb@gmail.com' target='_blank' rel="noreferrer"> 
+                  <div className="ci-value">jerin.babujb@gmail.com</div>
+                </a>
               </div>
               <div className="ci-item">
                 <div className="ci-label">LOCATION</div>
                 <div className="ci-value">Manama, Bahrain // Remote</div>
               </div>
-             <div className="ci-socials">
-  <a
-    href="https://github.com/Jerinbabujb"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="ci-social"
-  >
-    GITHUB
-  </a>
-
-  <a
-    href="https://www.linkedin.com/in/jerin-babu/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="ci-social"
-  >
-    LINKEDIN
-  </a>
-</div>
+              <div className="ci-socials">
+                <a
+                  href="https://github.com/Jerinbabujb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ci-social"
+                >
+                  GITHUB
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/jerin-babu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ci-social"
+                >
+                  LINKEDIN
+                </a>
+              </div>
             </div>
           </FadeUp>
 
           <FadeUp delay={0.1}>
             <div className="contact-form-wrap">
               <div className="cf-title">CONTACT</div>
-              <div className="cf-grid">
-                <input className="cf-input" placeholder="FULL NAME" />
-                <input className="cf-input" placeholder="EMAIL ADDRESS" />
-                <input className="cf-input cf-full" placeholder="COMPANY / PROJECT" />
-                <textarea className="cf-input cf-textarea cf-full" placeholder="DESCRIBE YOUR PROJECT. WHAT ARE YOU BUILDING? WHAT PROBLEMS NEED SOLVING?" />
-              </div>
-              <motion.button className="btn-primary btn-full-w" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-                ESTABLISH CONNECTION
-              </motion.button>
+              
+              {/* Form specifically using the ref and onSubmit required by EmailJS */}
+              <form ref={form} onSubmit={sendEmail}>
+                <div className="cf-grid">
+                  <input type="text" name="user_name" className="cf-input" placeholder="FULL NAME" required />
+                  <input type="email" name="user_email" className="cf-input" placeholder="EMAIL ADDRESS" required />
+                  <input type="text" name="company" className="cf-input cf-full" placeholder="COMPANY" />
+                  <textarea name="message" className="cf-input cf-textarea cf-full" placeholder="MESSAGE" required />
+                </div>
+                
+                <motion.button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="btn-primary btn-full-w" 
+                  style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'wait' : 'pointer' }}
+                  whileHover={{ scale: 1.01 }} 
+                  whileTap={{ scale: 0.99 }}
+                >
+                  {isSubmitting ? 'TRANSMITTING...' : 
+                   submitStatus === 'success' ? 'CONNECTION ESTABLISHED ✓' : 
+                   submitStatus === 'error' ? 'TRANSMISSION FAILED ✕' : 
+                   'ESTABLISH CONNECTION'}
+                </motion.button>
+              </form>
             </div>
           </FadeUp>
         </div>

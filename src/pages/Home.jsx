@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import Footer from '../components/Footer';
 import './Home.css';
 import { TypeAnimation } from 'react-type-animation';
+import emailjs from '@emailjs/browser';
 
 const tools = [
   { label: 'REACT / VITE', sym: '⚛' },
@@ -61,6 +62,40 @@ export default function Home() {
   const toolingRef = useRef(null);
   const { scrollYProgress: toolingScroll } = useScroll({ target: toolingRef, offset: ['start end', 'end start'] });
   const toolingBgY = useTransform(toolingScroll, [0, 1], ['-8%', '8%']);
+
+  // --- EmailJS State & Ref ---
+  const formRef = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // TODO: Use the same IDs you used on your Contact page
+    const SERVICE_ID = 'service_phwalbq';
+    const TEMPLATE_ID = 'template_l3vkg5b';
+    const PUBLIC_KEY = 'IWG7FhkVrzLj3ZXuT';
+
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, {
+        publicKey: PUBLIC_KEY,
+      })
+      .then(
+        () => {
+          setIsSubmitting(false);
+          setSubmitStatus('success');
+          formRef.current.reset();
+          setTimeout(() => setSubmitStatus(null), 3000);
+        },
+        (error) => {
+          setIsSubmitting(false);
+          setSubmitStatus('error');
+          console.log('FAILED...', error.text);
+        }
+      );
+  };
 
   return (
     <div className="home">
@@ -242,7 +277,6 @@ export default function Home() {
                       <span className="tag">{item.company}</span>
                     </div>
                     
-                    {/* Render Description as a List */}
                     <ul className="timeline-desc-list">
                       {item.desc.map((point, idx) => (
                         <li key={idx} className="timeline-desc-point">{point}</li>
@@ -313,20 +347,30 @@ export default function Home() {
               </div>
             </FadeUp>
           </div>
+          
           <FadeUp delay={0.15}>
-            <div className="cta-form">
-              <input className="form-field" placeholder="FULL NAME" />
-              <input className="form-field" placeholder="EMAIL ADDRESS" />
-              <textarea className="form-field form-textarea" placeholder="PROJECT BRIEF" />
+            {/* Changed from div to form, attached ref and onSubmit */}
+            <form ref={formRef} onSubmit={sendEmail} className="cta-form">
+              <input type="text" name="user_name" className="form-field" placeholder="FULL NAME" required />
+              <input type="email" name="user_email" className="form-field" placeholder="EMAIL ADDRESS" required />
+              <textarea name="message" className="form-field form-textarea" placeholder="MESSAGE" required />
+              
               <motion.button
+                type="submit"
+                disabled={isSubmitting}
                 className="btn-primary btn-full"
+                style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'wait' : 'pointer' }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                ESTABLISH CONNECTION
+                {isSubmitting ? 'TRANSMITTING...' : 
+                 submitStatus === 'success' ? 'CONNECTION ESTABLISHED ✓' : 
+                 submitStatus === 'error' ? 'TRANSMISSION FAILED ✕' : 
+                 'ESTABLISH CONNECTION'}
               </motion.button>
-            </div>
+            </form>
           </FadeUp>
+          
         </div>
       </section>
 
