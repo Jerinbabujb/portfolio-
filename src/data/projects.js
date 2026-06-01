@@ -86,19 +86,18 @@ const subscribeToTasks = (userId) => {
     stack: ['React (Vite)', 'Node.js', 'Express', 'MongoDB', 'Socket.io'],
     stats: [],
     code: `// WebSocket event handling for real-time message broadcasting
-io.on("connection", (socket) => {
-  socket.on("send_message", async (data) => {
-    const savedMessage = await Message.create(data);
-    
-    // Broadcast exclusively to the recipient's private room
-    socket.to(data.receiverRoom).emit("receive_message", {
-      text: savedMessage.text,
-      mediaUrl: savedMessage.mediaUrl,
-      timestamp: savedMessage.createdAt
-    });
-  });
-});
-}`,
+io.on("connection",(socket)=>{
+    const userId= socket.handshake.query.userId;
+    console.log("user connected",userId);
+
+    if(userId) userSocketMap[userId]=socket.id;
+    io.emit("getOnlineUsers",Object.keys(userSocketMap));
+
+    socket.on("disconnect",()=>{
+        console.log("user disconnected",userId);
+        io.emit("getOnlineUsers",Object.keys(userSocketMap));
+    })
+})`,
     related: ['unisoul', 'focus_flow', 'stream'],
   },
   {
@@ -117,18 +116,25 @@ io.on("connection", (socket) => {
       { title: 'Cloud Integration', desc: 'Streams media content directly from cloud storage without requiring a dedicated database.' }    ],
     stack: ['React Vite', 'Node.js', 'Express.js', 'FFmpeg', 'Video.js', 'HLS/DASH', 'CSS'],
     stats: [],
-    code: `// CypherVault.sol
-contract CypherVault {
-  function verifyAndIssue(
-    uint256[2] calldata pA,
-    uint256[2][2] calldata pB,
-    uint256[2] calldata pC,
-    uint256[1] calldata pubSignals
-  ) external returns (bytes32 credentialId) {
-    require(AgeVerifier.verifyProof(pA, pB, pC, pubSignals));
-    credentialId = _issueCredential(msg.sender, pubSignals[0]);
-  }
-}`,
+    code: `//ffmpeg command
+    const ffmpegCommand = 'ffmpeg -i \${videoPath} -codec:v libx264 -codec:a aac 
+    -hls_time 10 -hls_playlist_type vod -hls_segment_filename 
+    "\${outputhPath}/segment%03d.ts" -start_number 0 \${hlsPath}';
+//no queue because of POC not for production  
+    exec(ffmpegCommand,(error,stdout,stderr)=>{
+        if(error){
+            console.log('exec error: \${error}')
+        }
+        console.log('stdout: \${stdout}')
+        console.log('stderr: \${stderr}')
+        const videoUrl='\${url}/uploads/courses/\${lessaonId}/index.m3u8';
+        res.json({message:"video converted to hls to format",
+             videoUrl:videoUrl,
+             lessaonId:lessaonId
+        }
+           
+        )
+    })`,
     related: ['unisoul', 'focus_flow', 'chatter_box'],
     live:'https://video-stream-55vf.onrender.com/',
     github:'https://github.com/Jerinbabujb/video-stream',
@@ -149,25 +155,24 @@ contract CypherVault {
       { title: 'Cross-Platform Delivery', desc: 'Built natively with React Native and deployed via Expo Go for seamless iOS and Android accessibility.' }    ],
     stack: ['React Native', 'Expo Go', 'JavaScript', 'OpenWeatherMap API', 'GeoNames API'],
     stats: [],
-    code: `// warm.ts
-export class StratusOrchestrator {
-  async onNavigationEvent(route: string, userId: string) {
-    const nextRoutes = await this.predictor.predict(userId, route);
-    await Promise.all(
-      nextRoutes.map(r => FargatePrewarmer.ensure(r.mfeId, {
-        priority: r.confidence > 0.8 ? 'high' : 'normal',
-      }))
-    );
-  }
-}`,
+    code: `/try{
+    const response= await axios.get('https://api.openweathermap.org/data/2.5/weather?q=\${city}&appid=\${api_key}&units=metric');
+    const timeResponse= await axios.get('http://api.geonames.org/timezone?lat=\${response.data.coord.lat}&lng=\${response.data.coord.lon}&username=jerin_21');
+    setweatherData(response.data);
+   
+    const parser=new XMLParser();
+    const jsonData=parser.parse(timeResponse.data);
+    setTime(jsonData.geonames.timezone.time);
+  }`,
     related: ['focus_flow', 'unisoul', 'chatter_box'],
     github:'https://github.com/Jerinbabujb/weather_app',
   },
-  {
+ {
     id: 'bse',
     name: 'Bahrain Society of Engineers – MEMBERSHIP SYSTEM',
-    year: '2025', category: 'WEB PROJECT',
-    image:'/bse.png',
+    year: '2025', 
+    category: 'WEB PROJECT',
+    image: '/bse.png',
     description: 'A comprehensive portal for managing organizational memberships, payment plans, and digital credentials.',
     tags: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'WPBakery', 'ARMember'],
     status: 'ACTIVE PROJECT',
@@ -181,25 +186,32 @@ export class StratusOrchestrator {
     ],
     stack: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'WPBakery', 'ARMember'],
     stats: [],
-    code: `# arbitrage.py
-class ArbitrageEngine:
-    async def scan(self, collection_slug: str):
-        listings = await self.feed.get_all(collection_slug)
-        floor_by_market = self._compute_floors(listings)
-        vwap = self._compute_vwap(listings, days=30)
-        signals = []
-        for market, floor in floor_by_market.items():
-            if floor < vwap * (1 - self.threshold):
-                signals.append(ArbitrageSignal(market, floor, vwap))
-        return sorted(signals, key=lambda s: s.discount, reverse=True)`,
+    code: `// class-bse-digital-card.php
+// Registers a shortcode to generate a dynamic digital membership card
+add_shortcode('bse_digital_card', 'generate_bse_digital_card');
+
+function generate_bse_digital_card() {
+    if (!is_user_logged_in()) {
+        return '<p>Please log in to view your digital membership card.</p>';
+    }
+    \$current_user = wp_get_current_user();
+    // Fetching ARMember plan and custom member ID from the database
+    \$plan_name = get_user_meta(\$current_user->ID, 'arm_user_plan_name', true) ?: 
+    'Standard Member';
+    \$member_id = get_user_meta(\$current_user->ID, 'bse_member_id', true) ?: 'Pending';
+    ob_start(); ?>
+    <?php
+    return ob_get_clean();
+}`,
     related: ['everleaves-systems', 'eyf', 'tragobook'],
-    live:'https://member.bse.bh/ar/',
-      },
-  {
+    live: 'https://member.bse.bh/ar/',
+},
+ {
     id: 'tragobook',
     name: 'TRAGOBOOK – HOTEL BOOKING PLATFORM',
-    year: '2023', category: 'WEB PROJECT',
-    image:'/tragobook.png',
+    year: '2023', 
+    category: 'WEB PROJECT',
+    image: '/tragobook.png',
     description: 'A landing page and integrated mobile application for seamless hotel reservations, featuring multilingual support.',
     tags: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'Elementor', 'React Native'],
     status: 'STABLE',
@@ -208,29 +220,39 @@ class ArbitrageEngine:
     features: [
       { title: 'API Integration', desc: 'Custom endpoint connections handling user authentication, login states, and newsletter registrations.' },
       { title: 'Multilingual UI', desc: 'Integrated translation functionality to serve an international user base navigating the landing page.' },
-      { title: 'Mobile Webview', desc: 'A React Native shell application wrapping the core booking platform for mobile app store distribution.' }    ],
+      { title: 'Mobile Webview', desc: 'A React Native shell application wrapping the core booking platform for mobile app store distribution.' }
+    ],
     stack: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'Elementor', 'React Native'],
     stats: [],
-    code: `// orchestrator.cpp
-void Orchestrator::onAudioFrame(const AudioBuffer& buf) {
-  auto spectrum = FFTAnalyzer::compute(buf, FFT_SIZE_1024);
-  for (auto& zone : m_zones) {
-    float brightness = zone.audioMapping.evaluate(spectrum);
-    Color target = zone.palette.sample(brightness);
-    m_mesh.broadcastToZone(zone.id, LightCommand{
-      .color = target,
-      .transition_ms = zone.transitionMs,
-    });
-  }
-}`,
+    code: `// App.js - React Native Webview Wrapper
+import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { WebView } from 'react-native-webview';
+
+export default function TragoBookApp() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <WebView 
+        source={{ uri: 'https://www.tragobook.com/' }} 
+        startInLoadingState={true}
+        allowsBackForwardNavigationGestures={true}
+      />
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#ffffff' }
+});`,
     related: ['everleaves-systems', 'eyf', 'bse'],
-    live:'https://www.tragobook.com/',
-  },
+    live: 'https://www.tragobook.com/',
+},
   {
     id: 'everleaves-systems',
     name: 'EVERLEAVES SYSTEMS – CORPORATE WEBSITE',
-    year: '2025', category: 'WEB PROJECT',
-    image:'/everleaves-logo.png',
+    year: '2025', 
+    category: 'WEB PROJECT',
+    image: '/everleaves-logo.png',
     description: 'A professional digital presence highlighting company services, mission, and team structure.',
     tags: ['WordPress', 'HTML', 'CSS', 'Elementor', 'MySQL'],
     status: 'ACTIVE PROJECT',
@@ -243,27 +265,30 @@ void Orchestrator::onAudioFrame(const AudioBuffer& buf) {
     ],
     stack: ['WordPress', 'HTML', 'CSS', 'Elementor', 'MySQL'],
     stats: [],
-    code: `# conversion_lstm.py
-class ConversionLSTM(nn.Module):
-    def __init__(self, input_dim=32, hidden_dim=128):
-        super().__init__()
-        self.lstm = nn.LSTM(input_dim, hidden_dim, 2,
-                           batch_first=True, dropout=0.2)
-        self.head = nn.Sequential(
-            nn.Linear(hidden_dim, 64), nn.ReLU(),
-            nn.Dropout(0.1), nn.Linear(64, 1), nn.Sigmoid()
-        )
-    def forward(self, event_seq):
-        lstm_out, _ = self.lstm(event_seq)
-        return self.head(lstm_out[:, -1, :])`,
+    code: `// class-team-directory.php
+// Registers a Custom Post Type for the Team Directory feature
+function everleaves_register_team_cpt() {
+    register_post_type('team_member', array(
+        'labels' => array(
+            'name' => 'Team Members',
+            'singular_name' => 'Team Member'
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'menu_icon' => 'dashicons-groups',
+        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields')
+    ));
+}
+add_action('init', 'everleaves_register_team_cpt');`,
     related: ['eyf', 'tragobook', 'unisoul'],
-    live:'https://everleavessystems.com/',
+    live: 'https://everleavessystems.com/',
   },
   {
     id: 'eyf',
     name: 'ENGAGE YOUTH FOUNDATION',
-    year: '2023', category: 'WEB PROJECT',
-    image:'/eyf.png',
+    year: '2023', 
+    category: 'WEB PROJECT',
+    image: '/eyf.png',
     description: 'A non-profit organization platform featuring blog updates, upcoming events, and community outreach details.',
     tags: ['WordPress', 'HTML', 'CSS', 'Elementor', 'MySQL'],
     status: 'STABLE',
@@ -276,18 +301,22 @@ class ConversionLSTM(nn.Module):
     ],
     stack: ['WordPress', 'HTML', 'CSS', 'Elementor', 'MySQL'],
     stats: [],
-    code: `// generator.ts
-export async function generateLayouts(
-  intent: string, count = 100
-): Promise<LayoutVariant[]> {
-  const constraints = await IntentParser.parse(intent);
-  const solver = new ConstraintSolver(constraints);
-  const variants: LayoutVariant[] = [];
-  while (variants.length < count) {
-    const candidate = solver.sample();
-    if (solver.validate(candidate)) variants.push(candidate);
-  }
-  return variants;
+    code: `// class-event-manager.php
+// Shortcode to query and display upcoming community events
+add_shortcode('eyf_upcoming_events', 'display_upcoming_events');
+
+function display_upcoming_events() {
+    \$args = array(
+        'post_type' => 'event',
+        'posts_per_page' => 3,
+        'orderby' => 'date',
+        'order' => 'DESC' // Fetches the latest events
+    );
+    
+    \$events = new WP_Query(\$args);
+    \$output = '<div class="eyf-events-list">';
+    
+    return \$output . '</div>';
 }`,
     related: ['focus_flow', 'chatter_box', 'unisoul'],
   },
@@ -307,20 +336,26 @@ export async function generateLayouts(
       { title: 'Stateless Processing', desc: 'Operates strictly via system cache without relying on a persistent database architecture.' }    ],
     stack: ['Django', 'Python', 'BeautifulSoup4', 'Requests', 'html2pdf'],
     stats: [],
-    code: `// pipeline.ts
-gateway.addHook('preHandler', async (req, reply) => {
-  const limited = await RateLimiter.check(req.headers['x-consumer-id']);
-  if (limited) return reply.code(429).send({ error: 'rate_limited' });
-  const cached = await EdgeCache.get(req.routerPath, req.query);
-  if (cached) return reply.send(cached);
-});`,
+    code: `def home(request):
+    if request.method=='POST':
+        h=request.POST.get('gl')
+        ur=requests.get(h)
+        beauti=BeautifulSoup(ur.text,'html.parser')
+        for i in beauti.find_all('a'):
+            lin=i.get('href')
+            nam=i.string
+            a=weblink(name=nam,lin=lin)
+            a.save()
+    bi=weblink.objects.all()
+    return render(request,'home.html',{'b':bi})`,
     related: ['chatter_box', 'unisoul', 'focus_flow'],
   },
   {
     id: 'huloop',
     name: 'HULOOP AUTOMATION',
-    year: '2024', category: 'AUTOMATION PROJECT',
-    image:'/huloop.png',
+    year: '2024', 
+    category: 'AUTOMATION PROJECT',
+    image: '/huloop.png',
     description: 'An enterprise workflow automation tool focused on accelerating daily human tasks such as data entry and sheet validation.',
     tags: ['HuLoop Tool', 'JavaScript', 'Python'],
     status: 'ACTIVE PROJECT',
@@ -333,25 +368,37 @@ gateway.addHook('preHandler', async (req, reply) => {
     ],
     stack: ['HuLoop Tool', 'JavaScript', 'Python'],
     stats: [],
-    code: `// sequence_engine.rs
-#[wasm_bindgen]
-impl SequenceEngine {
-  pub fn new(sequence_data: &[u8]) -> Self {
-    let mut engine = Self {
-      sequence: sequence_data.to_vec(),
-      kmer_index: HashMap::new(),
-    };
-    engine.build_index(16);
-    engine
-  }
-}`,
+    code: `# data_validator.py
+import pandas as pd
+
+def validate_spreadsheet(file_path):
+    try:
+        df = pd.read_excel(file_path)
+        
+        # Check for missing values in critical columns
+        if df['Email'].isnull().any():
+            print("Validation Error: Missing email addresses found.")
+            return False
+        
+        # Ensure all transaction amounts are positive
+        if (df['Amount'] <= 0).any():
+            print("Validation Error: Invalid transaction amounts detected.")
+            return False
+
+        print("Validation Passed: Data is clean and ready for injection.")
+        return True
+        
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        return False`,
     related: ['unisoul', 'focus_flow', 'chatter_box'],
   },
   {
     id: 'slack',
     name: 'SLACK CLONE – REAL-TIME WORKSPACE',
-    year: '2023', category: 'WEB PROJECT',
-    image:'/slack.jpeg',
+    year: '2023', 
+    category: 'WEB PROJECT',
+    image: '/slack.jpeg',
     description: 'A comprehensive replica of the Slack workspace experience featuring instantaneous messaging and dynamic channel organization.',
     tags: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'WebSockets', 'Convex'],
     status: 'STABLE',
@@ -364,16 +411,29 @@ impl SequenceEngine {
     ],
     stack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'WebSockets', 'Convex'],
     stats: [],
-    code: `/* extent_alloc.c */
-int ba_alloc_extent(struct ba_sb *sb, u64 size_bytes,
-                    struct ba_extent *out_extent) {
-  struct ba_run *run = fl_find_contiguous(sb->free_list, size_bytes);
-  if (!run) return -ENOSPC;
-  out_extent->start_lba = run->start;
-  out_extent->ecc_level = ba_compute_ecc_level(sb, size_bytes);
-  rs_encode_extent(out_extent, sb->ecc_params);
-  return 0;
-}`,
+    code: `// convex/messages.ts
+import { mutation } from "./_generated/server";
+import { v } from "convex/values";
+
+export const sendMessage = mutation({
+  args: { 
+    channelId: v.id("channels"), 
+    body: v.string(), 
+    authorId: v.id("users") 
+  },
+  handler: async (ctx, args) => {
+    // Insert the new message into the Convex database
+    const messageId = await ctx.db.insert("messages", {
+      channelId: args.channelId,
+      body: args.body,
+      authorId: args.authorId,
+      timestamp: Date.now(),
+    });
+    
+    // Changes are automatically synced to all connected clients
+    return messageId;
+  },
+});`,
     related: ['unisoul', 'focus_flow', 'chatter_box'],
   }
 ];
