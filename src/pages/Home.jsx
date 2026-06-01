@@ -73,7 +73,6 @@ export default function Home() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // TODO: Use the same IDs you used on your Contact page
     const SERVICE_ID = 'service_phwalbq';
     const TEMPLATE_ID = 'template_l3vkg5b';
     const PUBLIC_KEY = 'IWG7FhkVrzLj3ZXuT';
@@ -124,8 +123,11 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85, duration: 0.6 }}
           >
+            {/* Kept React Router Link for navigating to a different page */}
             <Link to="/projects" className="btn-primary">EXPLORE WORK</Link>
-            <Link to="/#stack" className="btn-ghost">VIEW STACK</Link>
+            
+            {/* CHANGED TO STANDARD <a> TAG FOR SCROLLING */}
+            <a href="#stack" className="btn-ghost">VIEW STACK</a>
           </motion.div>
         </motion.div>
 
@@ -295,9 +297,9 @@ export default function Home() {
       </section>
 
       {/* TOOLING */}
-      <section id="stack" className="tooling-section" ref={toolingRef}>
+      <section  className="tooling-section" ref={toolingRef}>
         <motion.div className="tooling-bg" style={{ y: toolingBgY }} />
-        <div className="tooling-inner">
+        <div id="stack" className="tooling-inner">
           <FadeUp>
             <h2 className="tooling-title">Tooling <span className="about-cyan">&amp;</span> Ecosystem</h2>
           </FadeUp>
@@ -337,10 +339,7 @@ export default function Home() {
             <FadeUp>
               <div className="section-label">TRANSMISSION</div>
               <h2 className="cta-title">Let's <span className="cta-green">Sync.</span></h2>
-              <p className="cta-body">
-                I am currently accepting select opportunities for Q4 2026. If you have a project
-                that requires a fusion of architectural precision and innovative UI, reach out.
-              </p>
+              
               <div className="cta-contact-info">
                <a href='mailto:jerin.babujb@gmail.com' target='_blank' rel="noreferrer"> <div className="contact-row">✉ jerin.babujb@gmail.com</div></a>
                 <div className="contact-row">⊙ Manama, Bahrain // Remote</div>
@@ -349,7 +348,6 @@ export default function Home() {
           </div>
           
           <FadeUp delay={0.15}>
-            {/* Changed from div to form, attached ref and onSubmit */}
             <form ref={formRef} onSubmit={sendEmail} className="cta-form">
               <input type="text" name="user_name" className="form-field" placeholder="FULL NAME" required />
               <input type="email" name="user_email" className="form-field" placeholder="EMAIL ADDRESS" required />
