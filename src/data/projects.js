@@ -167,45 +167,7 @@ io.on("connection",(socket)=>{
     related: ['focus_flow', 'unisoul', 'chatter_box'],
     github:'https://github.com/Jerinbabujb/weather_app',
   },
- {
-    id: 'bse',
-    name: 'Bahrain Society of Engineers – MEMBERSHIP SYSTEM',
-    year: '2025', 
-    category: 'WEB PROJECT',
-    image: '/bse.png',
-    description: 'A comprehensive portal for managing organizational memberships, payment plans, and digital credentials.',
-    tags: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'WPBakery', 'ARMember'],
-    status: 'ACTIVE PROJECT',
-    vision: 'Modernize professional association management with automated workflows, dedicated dashboards, and digitized access systems.',
-    fullDescription: `Deployed a robust structural framework integrating complex membership logic, inter-portal messaging, and tiered data access.`,
-    features: [
-      { title: 'Dedicated Dashboards', desc: 'Personalized portals for members to view details, track payment history, and edit personal data.' },
-      { title: 'Automated Tiering', desc: 'Admin-driven workflow that automatically assigns membership plans and access levels based on payment clearance.' },
-      { title: 'Digital Credentials', desc: 'Generates dynamic, shareable digital membership cards for verified users.' },
-      { title: 'Internal Messaging', desc: 'Built-in communication module allowing direct member-to-admin messaging and global announcements.' },
-    ],
-    stack: ['WordPress', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'WPBakery', 'ARMember'],
-    stats: [],
-    code: `// class-bse-digital-card.php
-// Registers a shortcode to generate a dynamic digital membership card
-add_shortcode('bse_digital_card', 'generate_bse_digital_card');
-
-function generate_bse_digital_card() {
-    if (!is_user_logged_in()) {
-        return '<p>Please log in to view your digital membership card.</p>';
-    }
-    \$current_user = wp_get_current_user();
-    // Fetching ARMember plan and custom member ID from the database
-    \$plan_name = get_user_meta(\$current_user->ID, 'arm_user_plan_name', true) ?: 
-    'Standard Member';
-    \$member_id = get_user_meta(\$current_user->ID, 'bse_member_id', true) ?: 'Pending';
-    ob_start(); ?>
-    <?php
-    return ob_get_clean();
-}`,
-    related: ['everleaves-systems', 'eyf', 'tragobook'],
-    live: 'https://member.bse.bh/ar/',
-},
+ 
  {
     id: 'tragobook',
     name: 'TRAGOBOOK – HOTEL BOOKING PLATFORM',
@@ -244,7 +206,7 @@ export default function TragoBookApp() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#ffffff' }
 });`,
-    related: ['everleaves-systems', 'eyf', 'bse'],
+    related: ['everleaves-systems', 'eyf', 'tragobook'],
     live: 'https://www.tragobook.com/',
 },
   {
