@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import './Home.css';
 import { TypeAnimation } from 'react-type-animation';
 import emailjs from '@emailjs/browser';
+import { AnimatedCounter } from '../components/AnimatedCounter';
 
 const tools = [
   { label: 'REACT / VITE', sym: '⚛' },
@@ -206,6 +207,26 @@ export default function Home() {
                 </div>
               </div>
             </FadeUp>
+            <FadeUp>
+  <div className='statics'>
+    <div>
+      <h2><AnimatedCounter to={20} suffix="+" /></h2>
+      <span>Projects</span>
+    </div>
+    <div>
+      <h2><AnimatedCounter to={15} /></h2>
+      <span>Clients</span>
+    </div>
+    <div>
+      <h2><AnimatedCounter to={100} suffix="+" /></h2>
+      <span>Bug Fixes</span>
+    </div>
+    <div>
+      <h2><AnimatedCounter to={30} suffix="+" /></h2>
+      <span>Migrations</span>
+    </div>
+  </div>
+</FadeUp>
           </div>
         </div>
       </section>
@@ -224,7 +245,19 @@ export default function Home() {
           <div className="timeline">
             {[
               {
-                date: 'AUG 2025 — PRESENT',
+                date: 'JULY 2026 — PRESENT',
+                title: 'Project Manager',
+                company: 'Syskode Technologies W.L.L',
+                desc: [
+                  'Developing and maintaining high-performance web applications using modern front-end frameworks.',
+                  'Collaborating with cross-functional teams to architect scalable solutions and improve overall product quality.',
+                  'Implementing responsive, accessible UI designs and ensuring strict cross-browser compatibility.',
+                  'Participating in comprehensive code reviews and optimizing deployment workflows.'
+                ],
+                tags: ['WORDPRESS', 'DEPLOYMENT', 'PHP'],
+              },
+              {
+                date: 'AUG 2025 — JUNE 2026',
                 title: 'Jr Web Developer',
                 company: 'Fospe Technologies W.L.L',
                 desc: [

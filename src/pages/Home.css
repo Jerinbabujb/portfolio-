@@ -16,6 +16,42 @@
   color: #60a5fa; /* text-blue-400 */
 }
 
+/* Statics Container */
+.statics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+/* Individual Stat Item */
+.statics > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Change to center if you want them centered */
+}
+
+/* The Number */
+.statics h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #00ffff; /* Matching your 'about-cyan' theme */
+  margin: 0 0 0.5rem 0;
+  line-height: 1;
+  font-family: inherit;
+}
+
+/* The Label */
+.statics span {
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #a0a0a0;
+  font-weight: 600;
+}
+
 /* lg breakpoint (min-width: 1024px) */
 @media (min-width: 1024px) {
   .type-animation-text {
