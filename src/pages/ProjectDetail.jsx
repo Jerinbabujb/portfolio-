@@ -1,13 +1,13 @@
-<Helmet>
-  <title>{project.name} | Jerin Babu</title>
-  <meta name="description" content={project.shortDescription} />
-</Helmet>
+
 import { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { getProjectById, getRelatedProjects, projects } from '../data/projects';
 import Footer from '../components/Footer';
 import './ProjectDetail.css';
+import { Helmet } from 'react-helmet-async';
+
+
 
 function FadeUp({ children, delay = 0 }) {
   const ref = useRef(null);
