@@ -1,3 +1,7 @@
+<Helmet>
+  <title>{project.name} | Jerin Babu</title>
+  <meta name="description" content={project.shortDescription} />
+</Helmet>
 import { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
